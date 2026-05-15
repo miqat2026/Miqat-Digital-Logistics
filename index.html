@@ -3,186 +3,203 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>ميقات اللوجستية الرقمية | MIQAT LOGISTICS AI</title>
-
-  <meta name="description" content="منصة سعودية ذكية للنقل السياحي الفاخر وخدمات الحجاج والمعتمرين مدعومة بالذكاء الاصطناعي." />
-
+  <title>ميقات اللوجستية الرقمية | Miqat Digital Logistics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <style>
-
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
-      scroll-behavior:smooth;
+      font-family:'Cairo',sans-serif;
     }
 
     body{
-      font-family:'Cairo',sans-serif;
       background:#050505;
-      color:#fff;
+      color:white;
       overflow-x:hidden;
     }
 
-    body::before{
-      content:'';
-      position:fixed;
-      width:100%;
-      height:100%;
-      background:
-      radial-gradient(circle at top right, rgba(0,140,255,.15), transparent 30%),
-      radial-gradient(circle at bottom left, rgba(255,187,0,.12), transparent 35%);
-      z-index:-2;
+    :root{
+      --gold:#d4af37;
+      --dark:#070707;
+      --glass:rgba(255,255,255,0.08);
+      --border:rgba(255,255,255,0.15);
     }
 
     .hero-video{
       position:fixed;
+      top:0;
+      left:0;
       width:100%;
       height:100%;
       object-fit:cover;
-      z-index:-3;
-      opacity:.18;
+      z-index:-2;
+      filter:brightness(0.25);
     }
 
     .overlay{
       position:fixed;
       inset:0;
-      background:linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,.92));
-      z-index:-2;
-    }
-
-    nav{
-      position:fixed;
-      top:0;
-      width:100%;
-      padding:18px 8%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background:rgba(0,0,0,.35);
-      backdrop-filter:blur(18px);
-      z-index:999;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-
-    .logo{
-      display:flex;
-      align-items:center;
-      gap:15px;
-    }
-
-    .logo img{
-      width:70px;
-      height:70px;
-      object-fit:contain;
-      border-radius:50%;
-      background:#000;
-      padding:5px;
-      box-shadow:0 0 25px rgba(255,183,0,.25);
-    }
-
-    .brand h1{
-      font-size:1.1rem;
-      color:#fff;
-    }
-
-    .brand span{
-      color:#d4af37;
-      font-size:.9rem;
-      letter-spacing:2px;
-    }
-
-    .nav-links{
-      display:flex;
-      gap:25px;
-      list-style:none;
-    }
-
-    .nav-links a{
-      text-decoration:none;
-      color:#fff;
-      font-size:.95rem;
-      transition:.3s;
-    }
-
-    .nav-links a:hover{
-      color:#d4af37;
-    }
-
-    .lang-box{
-      background:rgba(255,255,255,.06);
-      padding:10px 15px;
-      border-radius:50px;
-      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(to bottom,rgba(0,0,0,.75),rgba(0,0,0,.92));
+      z-index:-1;
     }
 
     header{
-      min-height:100vh;
+      width:100%;
+      padding:18px 6%;
       display:flex;
-      justify-content:center;
+      justify-content:space-between;
       align-items:center;
-      text-align:center;
-      padding:140px 8%;
+      position:fixed;
+      top:0;
+      z-index:999;
+      backdrop-filter:blur(18px);
+      background:rgba(0,0,0,0.35);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo-box{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo-box img{
+      width:68px;
+      height:68px;
+      border-radius:50%;
+      object-fit:cover;
+      border:2px solid var(--gold);
+      background:#111;
+    }
+
+    .logo-title h1{
+      font-size:22px;
+      color:white;
+      font-weight:900;
+    }
+
+    .logo-title span{
+      color:var(--gold);
+      font-size:13px;
+      letter-spacing:2px;
+    }
+
+    nav{
+      display:flex;
+      gap:24px;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      font-size:15px;
+      transition:.3s;
+    }
+
+    nav a:hover{
+      color:var(--gold);
     }
 
     .hero{
-      max-width:950px;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:160px 8% 100px;
+    }
+
+    .hero-content{
+      max-width:1000px;
+    }
+
+    .hero-badge{
+      display:inline-block;
+      padding:10px 22px;
+      border-radius:50px;
+      background:rgba(212,175,55,.15);
+      border:1px solid rgba(212,175,55,.4);
+      color:var(--gold);
+      margin-bottom:24px;
+      font-size:14px;
     }
 
     .hero h2{
-      font-size:4rem;
-      line-height:1.3;
-      margin-bottom:25px;
-      background:linear-gradient(to right,#fff,#d4af37);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+      font-size:68px;
+      line-height:1.2;
+      font-weight:900;
+      margin-bottom:24px;
+    }
+
+    .hero h2 span{
+      color:var(--gold);
     }
 
     .hero p{
-      color:#ccc;
+      font-size:20px;
       line-height:2;
-      font-size:1.1rem;
-      margin-bottom:40px;
+      color:#d4d4d4;
+      margin-bottom:38px;
     }
 
     .hero-buttons{
       display:flex;
-      gap:20px;
+      gap:18px;
       justify-content:center;
       flex-wrap:wrap;
     }
 
     .btn{
-      padding:16px 32px;
+      padding:16px 34px;
       border-radius:60px;
-      border:none;
-      cursor:pointer;
-      font-size:1rem;
-      transition:.3s;
       text-decoration:none;
+      transition:.3s;
+      font-weight:700;
     }
 
-    .gold{
-      background:linear-gradient(to right,#caa12d,#f5d46f);
-      color:#000;
-      font-weight:bold;
-      box-shadow:0 0 30px rgba(255,196,0,.35);
+    .btn-gold{
+      background:linear-gradient(45deg,#c89b2f,#f1d06a);
+      color:black;
     }
 
-    .glass{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      color:#fff;
-      backdrop-filter:blur(12px);
+    .btn-dark{
+      border:1px solid rgba(255,255,255,0.2);
+      background:rgba(255,255,255,0.06);
+      color:white;
+      backdrop-filter:blur(10px);
+    }
+
+    .btn:hover{
+      transform:translateY(-4px);
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:24px;
+      padding:40px 8% 80px;
+    }
+
+    .stat-card{
+      background:var(--glass);
+      border:1px solid var(--border);
+      backdrop-filter:blur(16px);
+      padding:34px;
+      border-radius:28px;
+      text-align:center;
+    }
+
+    .stat-card h3{
+      color:var(--gold);
+      font-size:38px;
+      margin-bottom:10px;
     }
 
     section{
-      padding:110px 8%;
+      padding:100px 8%;
     }
 
     .section-title{
@@ -190,580 +207,392 @@
       margin-bottom:70px;
     }
 
-    .section-title h3{
-      font-size:2.5rem;
-      margin-bottom:15px;
-      color:#d4af37;
+    .section-title h2{
+      font-size:48px;
+      margin-bottom:18px;
     }
 
     .section-title p{
-      color:#aaa;
+      color:#c8c8c8;
+      max-width:760px;
+      margin:auto;
+      line-height:2;
     }
 
-    .glass-card{
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:28px;
-      padding:35px;
-      backdrop-filter:blur(14px);
-      transition:.4s;
-    }
-
-    .glass-card:hover{
-      transform:translateY(-8px);
-      border-color:#d4af37;
-      box-shadow:0 0 30px rgba(255,183,0,.18);
-    }
-
-    .services-grid,
-    .fleet-grid,
-    .safety-grid,
-    .social-grid{
+    .services{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:30px;
     }
 
+    .service-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:34px;
+      border-radius:30px;
+      transition:.3s;
+      backdrop-filter:blur(14px);
+    }
+
+    .service-card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(212,175,55,.4);
+    }
+
+    .service-card h3{
+      color:var(--gold);
+      margin-bottom:18px;
+      font-size:24px;
+    }
+
+    .fleet{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .fleet-card{
+      overflow:hidden;
+      border-radius:30px;
+      background:#111;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
     .fleet-card img{
       width:100%;
-      height:220px;
+      height:240px;
       object-fit:cover;
-      border-radius:20px;
-      margin-bottom:20px;
+    }
+
+    .fleet-info{
+      padding:28px;
+    }
+
+    .fleet-info h3{
+      color:var(--gold);
+      margin-bottom:12px;
     }
 
     .booking-box{
-      max-width:950px;
+      max-width:1000px;
       margin:auto;
-      background:rgba(255,255,255,.05);
-      padding:45px;
-      border-radius:35px;
-      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      padding:50px;
+      border-radius:40px;
       backdrop-filter:blur(18px);
     }
 
-    .booking-grid{
+    .form-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
       gap:20px;
     }
 
-    input,
-    select,
-    textarea{
+    input,select,textarea{
       width:100%;
       padding:16px;
-      border:none;
-      border-radius:16px;
-      background:rgba(255,255,255,.07);
-      color:#fff;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.05);
+      color:white;
       outline:none;
     }
 
     textarea{
       min-height:120px;
+      resize:none;
     }
 
-    .price-box{
-      margin-top:30px;
-      background:rgba(255,183,0,.08);
-      border:1px solid rgba(255,183,0,.2);
-      padding:20px;
-      border-radius:20px;
-      text-align:center;
+    .submit-btn{
+      width:100%;
+      padding:18px;
+      border:none;
+      border-radius:18px;
+      margin-top:20px;
+      background:linear-gradient(45deg,#d4af37,#f3d87b);
+      color:black;
+      font-weight:900;
+      font-size:18px;
+      cursor:pointer;
     }
 
-    .price-box h4{
-      color:#d4af37;
+    .social-proof{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:24px;
+    }
+
+    .proof-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:28px;
+      border-radius:24px;
+    }
+
+    .proof-card h4{
+      color:var(--gold);
       margin-bottom:10px;
-    }
-
-    .social-card{
-      direction:ltr;
-      font-family:'Inter',sans-serif;
-    }
-
-    .social-card small{
-      color:#999;
     }
 
     footer{
       text-align:center;
-      padding:50px 20px;
-      color:#888;
-      border-top:1px solid rgba(255,255,255,.06);
+      padding:40px;
+      border-top:1px solid rgba(255,255,255,0.08);
+      background:#050505;
+      color:#999;
     }
 
-    .floating-ai{
+    .floating-whatsapp{
       position:fixed;
-      bottom:30px;
-      left:30px;
-      width:75px;
-      height:75px;
+      bottom:24px;
+      left:24px;
+      width:72px;
+      height:72px;
       border-radius:50%;
-      background:radial-gradient(circle,#f5d46f,#b88a00);
+      background:#25d366;
       display:flex;
-      justify-content:center;
       align-items:center;
-      color:#000;
-      font-weight:bold;
-      box-shadow:0 0 40px rgba(255,196,0,.5);
-      animation:pulse 3s infinite;
+      justify-content:center;
+      font-size:34px;
+      color:white;
+      text-decoration:none;
       z-index:999;
-      cursor:pointer;
+      box-shadow:0 10px 30px rgba(37,211,102,.4);
     }
 
-    @keyframes pulse{
-      0%{transform:scale(1);}
-      50%{transform:scale(1.08);}
-      100%{transform:scale(1);}
-    }
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:25px;
-      margin-top:70px;
-    }
-
-    .stat-box{
-      text-align:center;
-      padding:30px;
-      border-radius:25px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .stat-box h2{
-      color:#d4af37;
-      font-size:2.5rem;
-      margin-bottom:10px;
-    }
-
-    @media(max-width:768px){
+    @media(max-width:900px){
+      nav{
+        display:none;
+      }
 
       .hero h2{
-        font-size:2.3rem;
+        font-size:42px;
       }
 
-      nav{
-        flex-direction:column;
-        gap:20px;
+      .hero p{
+        font-size:16px;
       }
 
-      .nav-links{
-        flex-wrap:wrap;
-        justify-content:center;
+      .booking-box{
+        padding:30px;
       }
-
     }
-
   </style>
 </head>
-
 <body>
 
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="https://cdn.coverr.co/videos/coverr-driving-at-night-1560684703572?download=1080p" type="video/mp4">
+  <video autoplay muted loop class="hero-video">
+    <source src="https://cdn.coverr.co/videos/coverr-night-drive-1566165957493?download=1080p" type="video/mp4">
   </video>
 
   <div class="overlay"></div>
 
-  <nav>
-
-    <div class="logo">
-
-      <!-- ضع رابط شعارك هنا -->
-      <img src="YOUR-LOGO.png" alt="MIQAT Logo">
-
-      <div class="brand">
-        <h1>ميقات اللوجستية الرقمية</h1>
-        <span>MIQAT LOGISTICS AI</span>
-      </div>
-
-    </div>
-
-    <ul class="nav-links">
-      <li><a href="#">الرئيسية</a></li>
-      <li><a href="#about">من نحن</a></li>
-      <li><a href="#services">خدماتنا</a></li>
-      <li><a href="#fleet">اسطولنا</a></li>
-      <li><a href="#booking">الحجز</a></li>
-      <li><a href="#contact">تواصل معنا</a></li>
-    </ul>
-
-    <div class="lang-box">
-      🇸🇦 العربية | 🇺🇸 EN | 🇹🇷 TR | 🇵🇰 اردو
-    </div>
-
-  </nav>
-
   <header>
+    <div class="logo-box">
+      <img src="https://i.imgur.com/qcR8W4M.jpeg" alt="Miqat Logo">
+      <div class="logo-title">
+        <h1>شركة ميقات اللوجستية الرقمية</h1>
+        <span>MIQAT DIGITAL LOGISTICS</span>
+      </div>
+    </div>
 
-    <div class="hero">
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#about">من نحن</a>
+      <a href="#services">خدماتنا</a>
+      <a href="#fleet">أسطولنا</a>
+      <a href="#booking">الحجز</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge">ذكاء اصطناعي • نقل فاخر • خدمة VIP</div>
 
       <h2>
-        فخامة التنقل<br>
-        بذكاء المستقبل
+        مستقبل النقل الذكي<br>
+        لضيوف الرحمن يبدأ مع <span>ميقات</span>
       </h2>
 
       <p>
-        منصة سعودية ذكية للنقل السياحي الفاخر وخدمات الحجاج والمعتمرين
-        مدعومة بالذكاء الاصطناعي وتقنيات التشغيل الحديثة.
+        منصة لوجستية رقمية فاخرة متخصصة في النقل السياحي ونقل الحجاج والمعتمرين داخل المملكة العربية السعودية بأسطول فاخر وتجربة عالمية مدعومة بالذكاء الاصطناعي.
       </p>
 
       <div class="hero-buttons">
-
-        <a href="#booking" class="btn gold">
-          احجز رحلتك الآن
-        </a>
-
-        <a href="https://wa.me/967771958902" class="btn glass">
-          واتساب مباشر
-        </a>
-
+        <a href="#booking" class="btn btn-gold">احجز رحلتك الآن</a>
+        <a href="#services" class="btn btn-dark">استكشف خدماتنا</a>
       </div>
+    </div>
+  </section>
 
-      <div class="stats">
-
-        <div class="stat-box">
-          <h2>98%</h2>
-          <p>رضا الضيوف</p>
-        </div>
-
-        <div class="stat-box">
-          <h2>24/7</h2>
-          <p>دعم وتشغيل مستمر</p>
-        </div>
-
-        <div class="stat-box">
-          <h2>VIP</h2>
-          <p>خدمات فاخرة ذكية</p>
-        </div>
-
-      </div>
-
+  <div class="stats">
+    <div class="stat-card">
+      <h3>+1450</h3>
+      <p>رحلة ذكية هذا الشهر</p>
     </div>
 
-  </header>
+    <div class="stat-card">
+      <h3>98%</h3>
+      <p>نسبة رضا الضيوف</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>24/7</h3>
+      <p>دعم وتشغيل متواصل</p>
+    </div>
+  </div>
 
   <section id="about">
-
     <div class="section-title">
-      <h3>من نحن</h3>
-      <p>Saudi Luxury AI Mobility Platform</p>
-    </div>
-
-    <div class="glass-card">
-
-      <p style="line-height:2.3;color:#ddd;font-size:1.05rem;">
-
-        "ميقات" شركة سعودية تعيد تعريف خدمات النقل السياحي
-        بتقنية الذكاء الاصطناعي بين مدن المملكة العربية السعودية،
-        بما فيها خدمات النقل للزوار والمعتمرين وحجاج بيت الله الحرام.
-
-        نتميز في استقبال العملاء القادمين من خارج المملكة
-        عبر المطارات ومحطات القطارات، وتوفير وسائل نقل فاخرة
-        مرخصة وسائقين محترفين بخبرة عالية لتوفير رحلة آمنة ومريحة.
-
+      <h2>من نحن؟</h2>
+      <p>
+        ميقات شركة سعودية متخصصة في النقل السياحي الذكي للزوار والمعتمرين والحجاج، تقدم تجربة فاخرة تجمع بين التكنولوجيا الحديثة والخدمة الراقية داخل المملكة العربية السعودية.
       </p>
-
     </div>
-
   </section>
 
   <section id="services">
-
     <div class="section-title">
-      <h3>خدماتنا</h3>
-      <p>Luxury Smart Logistics Services</p>
+      <h2>خدماتنا</h2>
+      <p>حلول نقل ذكية وتجارب VIP مصممة بعناية للنخبة وضيوف الرحمن.</p>
     </div>
 
-    <div class="services-grid">
-
-      <div class="glass-card">
-        <h4>نقل الحجاج والمعتمرين</h4>
-        <br>
-        <p>خدمات متكاملة بين المشاعر المقدسة والمزارات.</p>
+    <div class="services">
+      <div class="service-card">
+        <h3>نقل الحجاج والمعتمرين</h3>
+        <p>تنقلات فاخرة وآمنة بين المشاعر المقدسة والمطارات والفنادق.</p>
       </div>
 
-      <div class="glass-card">
-        <h4>الاستقبال من المطارات</h4>
-        <br>
-        <p>استقبال رسمي فاخر من وإلى المطارات ومحطات القطار.</p>
+      <div class="service-card">
+        <h3>استقبال المطارات</h3>
+        <p>استقبال VIP من مطار جدة ومحطات القطار بسيارات فاخرة.</p>
       </div>
 
-      <div class="glass-card">
-        <h4>رحلات كبار الشخصيات</h4>
-        <br>
-        <p>برامج VIP خاصة للوفود والعائلات ورجال الأعمال.</p>
+      <div class="service-card">
+        <h3>رحلات كبار الشخصيات</h3>
+        <p>خدمات تنفيذية راقية للوفود والمسؤولين ورجال الأعمال.</p>
       </div>
 
-      <div class="glass-card">
-        <h4>العقود المؤسسية</h4>
-        <br>
-        <p>حلول نقل ذكية طويلة الأمد للشركات والجهات.</p>
+      <div class="service-card">
+        <h3>منصة حجز ذكية</h3>
+        <p>تتبع مباشر وفواتير رقمية وتجربة حجز عالمية مدعومة بالذكاء الاصطناعي.</p>
       </div>
-
     </div>
-
   </section>
 
   <section id="fleet">
-
     <div class="section-title">
-      <h3>أسطولنا</h3>
-      <p>Luxury Black Fleet</p>
+      <h2>أسطولنا الملكي</h2>
+      <p>سيارات حديثة فاخرة مجهزة للعائلات والشخصيات المهمة وضيوف الرحمن.</p>
     </div>
 
-    <div class="fleet-grid">
-
-      <div class="glass-card fleet-card">
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop" alt="">
-        <h4>Mercedes S-Class</h4>
-        <br>
-        <p>فخامة ملكية لأربعة ركاب.</p>
+    <div class="fleet">
+      <div class="fleet-card">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop" alt="Mercedes">
+        <div class="fleet-info">
+          <h3>Mercedes S-Class</h3>
+          <p>تجربة ملكية فاخرة لرجال الأعمال وكبار الشخصيات.</p>
+        </div>
       </div>
 
-      <div class="glass-card fleet-card">
-        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1200&auto=format&fit=crop" alt="">
-        <h4>GMC VIP</h4>
-        <br>
-        <p>رحلات كبار الشخصيات والتنقلات الفاخرة.</p>
+      <div class="fleet-card">
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1200&auto=format&fit=crop" alt="GMC">
+        <div class="fleet-info">
+          <h3>GMC VIP</h3>
+          <p>رحلات عائلية فاخرة بمقصورة واسعة وتقنيات متقدمة.</p>
+        </div>
       </div>
 
-      <div class="glass-card fleet-card">
-        <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=1200&auto=format&fit=crop" alt="">
-        <h4>Staria Luxury</h4>
-        <br>
-        <p>خيارات عائلية وسياحية راقية.</p>
+      <div class="fleet-card">
+        <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200&auto=format&fit=crop" alt="Staria">
+        <div class="fleet-info">
+          <h3>Hyundai Staria</h3>
+          <p>الخيار المثالي للمجموعات السياحية والتنقلات المريحة.</p>
+        </div>
       </div>
-
     </div>
-
-  </section>
-
-  <section>
-
-    <div class="section-title">
-      <h3>الأمان والثقة</h3>
-      <p>Your Journey Is Protected</p>
-    </div>
-
-    <div class="safety-grid">
-
-      <div class="glass-card">
-        <h4>سائقون مرخصون</h4>
-      </div>
-
-      <div class="glass-card">
-        <h4>أسعار ثابتة</h4>
-      </div>
-
-      <div class="glass-card">
-        <h4>ترجمة فورية</h4>
-      </div>
-
-      <div class="glass-card">
-        <h4>تتبع مباشر</h4>
-      </div>
-
-    </div>
-
-  </section>
-
-  <section>
-
-    <div class="section-title">
-      <h3>تجارب العملاء</h3>
-      <p>Guest Experiences Worldwide</p>
-    </div>
-
-    <div class="social-grid">
-
-      <div class="glass-card social-card">
-        <p>
-          “Everything was perfectly organized from Jeddah Airport to Makkah.”
-        </p>
-        <br>
-        <small>★★★★★ • Turkey</small>
-      </div>
-
-      <div class="glass-card social-card">
-        <p>
-          “الخدمة راقية جدًا والاستقبال كان احترافي.”
-        </p>
-        <br>
-        <small>★★★★★ • Saudi Arabia</small>
-      </div>
-
-      <div class="glass-card social-card">
-        <p>
-          “ڈرائیور وقت پر آیا اور گاڑی بہت آرام دہ تھی۔”
-        </p>
-        <br>
-        <small>★★★★★ • Pakistan</small>
-      </div>
-
-    </div>
-
   </section>
 
   <section id="booking">
-
     <div class="section-title">
-      <h3>الحجز الذكي</h3>
-      <p>Mission Control Booking Console</p>
+      <h2>احجز رحلتك الذكية</h2>
+      <p>أرسل طلب الحجز مباشرة لفريق العمليات عبر واتساب.</p>
     </div>
 
     <div class="booking-box">
-
-      <div class="booking-grid">
-
+      <div class="form-grid">
         <input type="text" id="name" placeholder="الاسم الكامل">
-
         <input type="text" id="phone" placeholder="رقم الواتساب">
-
         <input type="text" id="from" placeholder="نقطة الانطلاق">
-
         <input type="text" id="to" placeholder="الوجهة">
-
         <input type="date" id="date">
 
-        <select id="vehicle">
+        <select id="car">
           <option>اختر المركبة</option>
           <option>Mercedes S-Class</option>
           <option>GMC VIP</option>
-          <option>Staria Luxury</option>
+          <option>Hyundai Staria</option>
         </select>
-
-        <select id="passengers">
-          <option>عدد الركاب</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4+</option>
-        </select>
-
       </div>
 
-      <br>
+      <textarea id="notes" placeholder="ملاحظات إضافية أو رقم الرحلة"></textarea>
 
-      <textarea id="notes" placeholder="ملاحظات إضافية"></textarea>
+      <button class="submit-btn" onclick="sendWhatsApp()">إرسال الحجز عبر واتساب</button>
+    </div>
+  </section>
 
-      <div class="price-box">
-
-        <h4>السعر التقديري الذكي</h4>
-
-        <p id="price">
-          يبدأ من 350 ريال سعودي
-        </p>
-
-      </div>
-
-      <br>
-
-      <center>
-
-        <button onclick="sendBooking()" class="btn gold">
-          إرسال إلى واتساب
-        </button>
-
-      </center>
-
+  <section>
+    <div class="section-title">
+      <h2>الدليل الاجتماعي</h2>
+      <p>رسائل شكر حقيقية من ضيوفنا بلغات متعددة.</p>
     </div>
 
+    <div class="social-proof">
+      <div class="proof-card">
+        <h4>عميل من تركيا</h4>
+        <p>"خدمة احترافية مذهلة والاستقبال كان راقياً للغاية."</p>
+      </div>
+
+      <div class="proof-card">
+        <h4>عميل من إندونيسيا</h4>
+        <p>"أفضل تجربة نقل للحرم والمطار بكل راحة وأمان."</p>
+      </div>
+
+      <div class="proof-card">
+        <h4>عميل من بريطانيا</h4>
+        <p>"Luxury experience from airport pickup to final destination."</p>
+      </div>
+    </div>
   </section>
 
   <footer id="contact">
-
-    <h3 style="color:#d4af37;">
-      MIQAT LOGISTICS AI
-    </h3>
-
-    <br>
-
     <p>
-      واتساب: +967771958902
+      © 2026 Miqat Digital Logistics — جميع الحقوق محفوظة
+      <br><br>
+      WhatsApp: +967771958902
     </p>
-
-    <br>
-
-    <p>
-      migat.ai.sa
-    </p>
-
   </footer>
 
-  <div class="floating-ai">
-    AI
-  </div>
+  <a class="floating-whatsapp" href="https://wa.me/967771958902" target="_blank">
+    ☎
+  </a>
 
   <script>
+    function sendWhatsApp(){
+      const name=document.getElementById('name').value;
+      const phone=document.getElementById('phone').value;
+      const from=document.getElementById('from').value;
+      const to=document.getElementById('to').value;
+      const date=document.getElementById('date').value;
+      const car=document.getElementById('car').value;
+      const notes=document.getElementById('notes').value;
 
-    function sendBooking(){
+      const message=`*طلب حجز جديد*%0A%0Aالاسم: ${name}%0Aرقم الواتساب: ${phone}%0Aمن: ${from}%0Aإلى: ${to}%0Aالتاريخ: ${date}%0Aالمركبة: ${car}%0Aملاحظات: ${notes}`;
 
-      let name = document.getElementById('name').value;
-      let phone = document.getElementById('phone').value;
-      let from = document.getElementById('from').value;
-      let to = document.getElementById('to').value;
-      let date = document.getElementById('date').value;
-      let vehicle = document.getElementById('vehicle').value;
-      let passengers = document.getElementById('passengers').value;
-      let notes = document.getElementById('notes').value;
-
-      let message =
-`🚘 طلب حجز جديد - MIQAT LOGISTICS AI
-
-الاسم:
-${name}
-
-رقم التواصل:
-${phone}
-
-الانطلاق:
-${from}
-
-الوجهة:
-${to}
-
-التاريخ:
-${date}
-
-المركبة:
-${vehicle}
-
-عدد الركاب:
-${passengers}
-
-ملاحظات:
-${notes}`;
-
-      let url = `https://wa.me/967771958902?text=${encodeURIComponent(message)}`;
-
-      window.open(url,'_blank');
-
+      window.open(`https://wa.me/967771958902?text=${message}`,'_blank');
     }
-
-    const vehicle = document.getElementById('vehicle');
-    const price = document.getElementById('price');
-
-    vehicle.addEventListener('change',()=>{
-
-      if(vehicle.value.includes('Mercedes')){
-        price.innerHTML='السعر التقديري: 450 ريال سعودي';
-      }
-
-      else if(vehicle.value.includes('GMC')){
-        price.innerHTML='السعر التقديري: 650 ريال سعودي';
-      }
-
-      else{
-        price.innerHTML='السعر التقديري: 350 ريال سعودي';
-      }
-
-    });
-
   </script>
 
 </body>
