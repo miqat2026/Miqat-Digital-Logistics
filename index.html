@@ -1,403 +1,521 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ميقات الرقمية | منصة النقل اللوجستي الفاخر للمشاعر المقدسة</title>
-    <!-- Tailwind CSS & FontAwesome Icons -->
-    <script src="https://tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- Google Fonts: Cairo & Orbitron for Sci-Fi HUD look -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <title>ميقات اللوجستية | Miqat Logistics</title>
+    <!-- استدعاء مكتبة الأيقونات العالمية ومكتبة توليد الـ PDF والـ QR Code آلياً -->
+    <link rel="stylesheet" href="cloudflare.com">
+    <script src="cloudflare.com"></script>
+    <script src="cloudflare.com"></script>
     
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #030712; }
-        .hud-font { font-family: 'Orbitron', sans-serif; }
-        /* Glassmorphism Effect */
-        .glass-ui {
-            background: rgba(15, 23, 42, 0.55);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+        /* هركبة الألوان السيادية الفاخرة وعناصر الواجهة */
+        :root {
+            --bg-color: #0A192F;      /* الكحلي الملكي الليلي */
+            --gold-color: #D4AF37;    /* الذهبي المصقول عيار 24 */
+            --text-white: #FFFFFF;    /* الأبيض الناصع للتباين */
+            --card-bg: #112240;       /* كحلي فاتح للبطاقات الحيوية */
         }
-        /* Neon Royal Gold Glows */
-        .text-gold { color: #D4AF37; }
-        .bg-gold { background-color: #D4AF37; }
-        .border-gold { border-color: #D4AF37; }
-        .glow-gold { text-shadow: 0 0 12px rgba(212, 175, 55, 0.6); }
-        .shadow-neon { box-shadow: 0 0 20px rgba(212, 175, 55, 0.25); }
-        .hud-line { background: linear-gradient(90deg, transparent, #D4AF37, transparent); }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* الجزء العلوي - الترويسة */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(10, 25, 47, 0.95);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+            color: var(--gold-color);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            color: var(--gold-color);
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: var(--text-white);
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-color);
+        }
+
+        .lang-currency {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-select {
+            background: transparent;
+            color: var(--text-white);
+            border: 1px solid var(--gold-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* الواجهة الرئيسية والسينمائية */
+        .hero {
+            min-height: 100vh;
+            padding: 120px 8% 60px 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.95)), 
+                        url('unsplash.com') no-repeat center center/cover;
+        }
+
+        .hero-title {
+            font-size: 42px;
+            color: var(--text-white);
+            margin-bottom: 15px;
+        }
+
+        .hero-title span {
+            color: var(--gold-color);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: #8892B0;
+            margin-bottom: 40px;
+            max-width: 60px;
+            width: 100%;
+        }
+
+        /* ماكينة الحجز الذكية */
+        .booking-widget {
+            background-color: var(--card-bg);
+            border: 2px solid var(--gold-color);
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 1100px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .widget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            color: var(--gold-color);
+            margin-bottom: 8px;
+        }
+
+        .input-group input, .input-group select {
+            background-color: var(--bg-color);
+            border: 1px solid #233554;
+            color: var(--text-white);
+            padding: 12px;
+            border-radius: 6px;
+            outline: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--gold-color);
+        }
+
+        .btn-main {
+            background: linear-gradient(45deg, #D4AF37, #F3E5AB);
+            color: var(--bg-color);
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* قسم الركاب وبوابة الدفع */
+        .modal-section {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(10, 25, 47, 0.98);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--gold-color);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .payment-gateways {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+            font-size: 30px;
+        }
+
+        .payment-gateways i {
+            color: var(--gold-color);
+            background: rgba(212, 175, 55, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* تصميم قسيمة الحجز الفاخرة للطباعة */
+        .voucher-container {
+            display: none;
+            background: #ffffff;
+            color: #000000;
+            padding: 40px;
+            border-radius: 0;
+            max-width: 800px;
+            margin: 40px auto;
+            border: 10px double #D4AF37;
+            direction: rtl;
+        }
+
+        .voucher-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #D4AF37;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .voucher-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .voucher-table th, .voucher-table td {
+            border: 1px solid #dddddd;
+            padding: 12px;
+            text-align: right;
+        }
+
+        .voucher-table th {
+            background-color: #f4f4f4;
+            color: #0A192F;
+        }
+
+        /* الزر العائم للواتساب */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-title { font-size: 28px; }
+        }
     </style>
 </head>
-<body class="text-slate-100 overflow-x-hidden selection:bg-amber-500 selection:text-black">
+<body>
 
-    <!-- 1. LOADING SCREEN (The AI Search Illusion) -->
-    <div id="loadingScreen" class="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-center p-4 transition-opacity duration-700 hidden">
-        <div class="glass-ui p-8 rounded-2xl max-w-md w-full text-center shadow-neon border border-gold/40">
-            <div class="relative w-24 h-24 mx-auto mb-6">
-                <div class="absolute inset-0 rounded-full border-4 border-t-amber-500 border-r-transparent border-b-slate-800 border-l-transparent animate-spin"></div>
-                <div class="absolute inset-2 rounded-full border border-dashed border-gold/40 animate-pulse flex items-center justify-center">
-                    <i class="fa-solid fa-satellite-dish text-amber-500 text-xl"></i>
-                </div>
-            </div>
-            <h3 class="text-xl font-bold mb-2 text-gold tracking-wide">MEEQAT AI ENGINE</h3>
-            <p id="loadingText" class="text-sm text-slate-400 font-mono">INITIALIZING QUANTUM ROUTE OPTIMIZATION...</p>
-            <div class="w-full bg-slate-800 h-1.5 rounded-full mt-6 overflow-hidden relative">
-                <div id="progressBar" class="bg-gold h-full w-0 transition-all duration-300 ease-out shadow-[0_0_10px_#D4AF37]"></div>
+    <!-- الترويسة العلوية -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-compass logo-icon"></i>
+            <div class="logo-text">
+                <h1>مـيـقـات</h1>
+                <span>MIQAT LOGISTICS</span>
             </div>
         </div>
-    </div>
-
-    <!-- 2. BACKGROUND CINEMATIC VIDEO & HUD OVERLAY -->
-    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-transparent to-slate-950 z-10"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-slate-950/40 to-slate-950 z-10"></div>
-        <!-- Data Grid Overlay (NASA Look) -->
-        <div class="absolute inset-0 z-10 opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%]"></div>
-        
-        <!-- 4K Background Video Mock (Replaced with a premium dark highway loop, change URL to your actual vehicle footage) -->
-        <video class="w-full h-full object-cover scale-105 filter brightness-[0.4] contrast-125" autoplay loop muted playsinline>
-            <source src="https://mixkit.co" type="video/mp4">
-        </video>
-    </div>
-
-    <!-- 3. GRAND HEADER & NAVIGATION -->
-    <header class="sticky top-0 z-40 w-full transition-all duration-300 border-b border-white/5 glass-ui">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <!-- Placeholder for Logo -->
-                <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-600 p-[1px] shadow-neon">
-                    <div class="w-full h-full bg-slate-900 rounded-lg flex items-center justify-center">
-                        <i class="fa-solid fa-layer-group text-gold text-lg"></i>
-                    </div>
-                </div>
-                <div>
-                    <h1 class="text-lg font-bold tracking-wider text-white">ميقات الرقمية</h1>
-                    <p class="text-[10px] hud-font tracking-widest text-gold uppercase block">MEEQAT LOGISTICS</p>
-                </div>
-            </div>
-            
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                <a href="#hero" class="hover:text-gold transition-colors">الرئيسية</a>
-                <a href="#about" class="hover:text-gold transition-colors">من نحن؟</a>
-                <a href="#services" class="hover:text-gold transition-colors">خدماتنا</a>
-                <a href="#fleet" class="hover:text-gold transition-colors">اسطولنا</a>
-                <a href="#booking" class="text-gold border border-gold/30 px-4 py-1.5 rounded-full hover:bg-gold hover:text-black transition-all">احجز الآن</a>
-            </nav>
-
-            <div class="flex items-center gap-3">
-                <div class="text-xs bg-slate-800/80 px-3 py-1 rounded border border-white/10 font-mono text-emerald-400 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> SECURE NETWORK
-                </div>
-            </div>
+        <ul class="nav-links">
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#">خدماتنا الفاخرة</a></li>
+            <li><a href="#">أسطول النخبة</a></li>
+            <li><a href="#">الشروط والأحكام</a></li>
+        </ul>
+        <div class="lang-currency">
+            <select class="btn-select">
+                <option>العربية</option>
+                <option>English</option>
+                <option>Indonesia</option>
+            </select>
+            <select class="btn-select">
+                <option>SAR (ريال)</option>
+                <option>USD ($)</option>
+            </select>
         </div>
     </header>
 
-    <!-- 4. HERO SECTION (The NASA-Style Command Center) -->
-    <section id="hero" class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Left: Cinematic Text and Call to Actions -->
-                <div class="lg:col-span-7 space-y-6 text-right">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-gold/30 text-gold text-xs font-semibold tracking-wide">
-                        <i class="fa-solid fa-bolt-lightning"></i> نظام الملاحة والتتبع الذكي للمشاعر المقدسة مفعّل
-                    </div>
-                    <h2 class="text-4xl sm:text-6xl font-extrabold text-white leading-tight">
-                        إدارة الذكاء اللوجستي <br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-l from-amber-200 via-gold to-yellow-500 glow-gold">لنخبة ضيوف الرحمن</span>
-                    </h2>
-                    <p class="text-lg text-slate-300 max-w-2xl">
-                        من خلف شاشات التحكم الرقمية، ندير أسطولاً من أفخم المركبات العالمية لضمان تنقلكم بين المطارات، الفنادق، والمشاعر المقدسة (مكة، المدينة، جدة، الطائف) بأعلى كفاءة وسرعة صامتة.
-                    </p>
-
-                    <!-- NASA Sci-Fi HUD Widgets Rows -->
-                    <div class="grid grid-cols-3 gap-4 pt-4 font-mono text-xs">
-                        <div class="p-3 rounded bg-slate-900/60 border border-white/5 glass-ui">
-                            <span class="text-slate-500 block mb-1">ROUTE OPTIMIZATION</span>
-                            <span class="text-emerald-400 font-bold text-sm">ACTIVE (99.8%)</span>
-                        </div>
-                        <div class="p-3 rounded bg-slate-900/60 border border-white/5 glass-ui">
-                            <span class="text-slate-500 block mb-1">LIVE PILGRIM TRACK</span>
-                            <span class="text-gold font-bold text-sm">TELEMETRY ON</span>
-                        </div>
-                        <div class="p-3 rounded bg-slate-900/60 border border-white/5 glass-ui">
-                            <span class="text-slate-500 block mb-1">SMART LOUISTICS</span>
-                            <span class="text-blue-400 font-bold text-sm">AUTO-DISPATCH</span>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-wrap gap-4 pt-4">
-                        <a href="#booking" class="px-8 py-4 rounded-xl bg-gold text-slate-950 font-bold hover:bg-yellow-500 shadow-neon transition-all flex items-center gap-3 transform hover:-translate-y-0.5">
-                            <i class="fa-solid fa-signature"></i> تخصيص رحلة نُخبوية فوراً
-                        </a>
-                        <a href="#fleet" class="px-8 py-4 rounded-xl bg-slate-900/80 border border-white/10 text-white font-medium hover:bg-slate-800 transition-all glass-ui">
-                            استكشاف الأسطول الملكي
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Right: High-End Live Booking Simulated Interface -->
-                <div id="booking" class="lg:col-span-5">
-                    <div class="glass-ui rounded-3xl p-6 sm:p-8 shadow-2xl border border-gold/30 relative overflow-hidden">
-                        <!-- Card Header Decor -->
-                        <div class="absolute top-0 left-0 right-0 h-[2px] hud-line"></div>
-                        <div class="flex justify-between items-center mb-6 border-b border-white/5 pb-4">
-                            <div>
-                                <h3 class="text-lg font-bold text-white">بوابة الحجز الذكي الذاتي</h3>
-                                <p class="text-xs text-slate-400">MEEQAT ENCRYPTED RESERVATION</p>
-                            </div>
-                            <i class="fa-solid fa-shield-halved text-gold text-xl animate-pulse"></i>
-                        </div>
-
-                        <!-- Scarcity Trigger (محرك الضغط) -->
-                        <div class="mb-6 p-3 rounded-lg bg-amber-950/40 border border-amber-500/20 text-xs text-amber-200 flex items-start gap-2">
-                            <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5"></i>
-                            <p><strong>تنبيه الإشغال:</strong> سيارات الفئة الرئاسية (Mercedes S-Class) المتاحة في منطقة مكة المكرمة وجدة غداً محجوزة بنسبة <span class="text-gold font-bold">85%</span> حتى الآن.</p>
-                        </div>
-
-                        <!-- Simulation Form -->
-                        <form id="bookingForm" onsubmit="handleBooking(event)" class="space-y-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">نوع الباقة الفاخرة</label>
-                                <select required class="w-full bg-slate-950/80 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-gold focus:ring-1 focus:ring-gold outline-none text-slate-200">
-                                    <option value="VIP Pilgrim">باقة المعتمر الفاخرة (VIP)</option>
-                                    <option value="Royal Hajj">باقة النخبة الملكية للحج</option>
-                                    <option value="Business Executive">باقة رجال الأعمال والدبلوماسيين</option>
-                                </select>
-                            </div>
-
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">نقطة الانطلاق</label>
-                                    <select class="w-full bg-slate-950/80 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-gold focus:ring-1 focus:ring-gold outline-none text-slate-200">
-                                        <option>مطار الملك عبد العزيز (جدة)</option>
-                                        <option>مكة المكرمة (الفندق)</option>
-                                        <option>المدينة المنورة</option>
-                                        <option>مطار الأمير محمد بن عبدالعزيز</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">الوجهة المقصودة</label>
-                                    <select class="w-full bg-slate-950/80 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-gold focus:ring-1 focus:ring-gold outline-none text-slate-200">
-                                        <option>مكة المكرمة (الحرم الشريف)</option>
-                                        <option>المنطقة المركزية (المدينة)</option>
-                                        <option>المشاعر المقدسة (منى / عرفات)</option>
-                                        <option>محافظة الطائف</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">فئة المركبة المطلوبة</label>
-                                <select class="w-full bg-slate-950/80 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-gold focus:ring-1 focus:ring-gold outline-none text-slate-200">
-                                    <option>مرسيدس بنز - إس كلاس (S-Class)</option>
-                                    <option>جيمس صالون يوكون (VIP)</option>
-                                    <option>هيونداي ستاريا الملكية</option>
-                                    <option>تويوتا هايس الفاخرة المخصصة</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 font-bold py-4 rounded-xl shadow-neon hover:from-amber-400 hover:to-yellow-500 transition-all flex items-center justify-center gap-2 tracking-wide text-sm mt-6">
-                                <i class="fa-solid fa-magnifying-glass-location"></i> فحص التوافر وحساب السعر المباشر
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. REAL-TIME HUD COUNTERS BAR (وهم الأتمتة والذكاء) -->
-    <div class="border-y border-white/5 bg-slate-950/60 glass-ui py-6 relative z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div>
-                <div class="text-2xl sm:text-3xl font-bold text-white hud-font tracking-tight"><span id="count1">1420</span>+</div>
-                <div class="text-[11px] text-slate-400 tracking-wider mt-1">رحلة ذكية مؤتمتة هذا الشهر</div>
-            </div>
-            <div>
-                <div class="text-2xl sm:text-3xl font-bold text-gold hud-font tracking-tight"><span id="count2">98.7</span>%</div>
-                <div class="text-[11px] text-slate-400 tracking-wider mt-1">نسبة رضا نُخبة الضيوف والوفود</div>
-            </div>
-            <div>
-                <div class="text-2xl sm:text-3xl font-bold text-white hud-font tracking-tight"><span id="count3">0.4</span>s</div>
-                <div class="text-[11px] text-slate-400 tracking-wider mt-1">زمن استجابة خوادم التوجيه الملاحي</div>
-            </div>
-            <div>
-                <div class="text-2xl sm:text-3xl font-bold text-emerald-400 hud-font tracking-tight">100%</div>
-                <div class="text-[11px] text-slate-400 tracking-wider mt-1">تشفير وضمان أمن المدفوعات والخصوصية</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 6. FLEET DISPLAY SECTION (استعراض الأسطول) -->
-    <section id="fleet" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-xs font-bold text-gold uppercase tracking-widest font-mono mb-3">// MEEQAT ROYAL FLEET</h2>
-            <p class="text-3xl font-bold text-white">الأسطول الرئاسي للنقل المتخصص</p>
-            <div class="w-24 h-0.5 hud-line mx-auto mt-4"></div>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Vehicle Card 1 -->
-            <div class="glass-ui rounded-2xl overflow-hidden border border-white/5 shadow-lg group hover:border-gold/30 transition-all duration-300">
-                <div class="h-52 bg-slate-900 relative overflow-hidden">
-                    <img src="https://unsplash.com" alt="Mercedes S Class" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90">
-                    <span class="absolute top-4 right-4 bg-slate-950/80 border border-gold/40 text-gold text-[10px] tracking-widest font-mono px-2 py-1 rounded">FIRST CLASS</span>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-lg font-bold text-white mb-2">مرسيدس بنز - فئة إس كلاس</h3>
-                    <p class="text-xs text-slate-400 mb-4">أيقونة الفخامة الألمانية المطلقة لنقل كبار الشخصيات والوفود من وإلى المطارات والحرمين.</p>
-                    <div class="flex justify-between items-center text-xs font-mono text-slate-500 border-t border-white/5 pt-4">
-                        <span>CAPACITY: 3 VIPs</span>
-                        <span class="text-gold">GPS TRACKED</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Vehicle Card 2 -->
-            <div class="glass-ui rounded-2xl overflow-hidden border border-white/5 shadow-lg group hover:border-gold/30 transition-all duration-300">
-                <div class="h-52 bg-slate-900 relative overflow-hidden">
-                    <img src="https://unsplash.com" alt="GMC Yukon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90">
-                    <span class="absolute top-4 right-4 bg-slate-950/80 border border-gold/40 text-gold text-[10px] tracking-widest font-mono px-2 py-1 rounded">LUXURY SUV</span>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-lg font-bold text-white mb-2">جيمس صالون يوكون ديلالي</h3>
-                    <p class="text-xs text-slate-400 mb-4">مثالية للعائلات الراغبة بخصوصية تامة ورحابة فائقة في الرحلات الطويلة بين مدن المملكة والمشاعر.</p>
-                    <div class="flex justify-between items-center text-xs font-mono text-slate-500 border-t border-white/5 pt-4">
-                        <span>CAPACITY: 6 VIPs</span>
-                        <span class="text-gold">GPS TRACKED</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Vehicle Card 3 -->
-            <div class="glass-ui rounded-2xl overflow-hidden border border-white/5 shadow-lg group hover:border-gold/30 transition-all duration-300">
-                <div class="h-52 bg-slate-900 relative overflow-hidden">
-                    <img src="https://unsplash.com" alt="Luxury Bus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90">
-                    <span class="absolute top-4 right-4 bg-slate-950/80 border border-gold/40 text-gold text-[10px] tracking-widest font-mono px-2 py-1 rounded">PREMIUM VAN</span>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-lg font-bold text-white mb-2">ستاريا وتويوتا هايس الملكية</h3>
-                    <p class="text-xs text-slate-400 mb-4">تجهيز مخصص بالكامل بمقاعد طيران مريحة، مصممة خصيصًا لنقل مجموعات المعتمرين بكفاءة متناهية.</p>
-                    <div class="flex justify-between items-center text-xs font-mono text-slate-500 border-t border-white/5 pt-4">
-                        <span>CAPACITY: 9-12 VIPs</span>
-                        <span class="text-gold">GPS TRACKED</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. SOCIAL PROOF LIVE NOTIFICATION MOCK (محرك الإشعارات الوهمي للضغط) -->
-    <div id="socialProof" class="fixed bottom-6 left-6 z-50 max-w-sm w-80 glass-ui p-4 rounded-xl border border-gold/30 shadow-2xl transition-all duration-500 transform translate-y-20 opacity-0 pointer-events-none">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold text-sm">
-                <i class="fa-solid fa-circle-check animate-pulse"></i>
-            </div>
-            <div class="flex-1">
-                <p id="socialProofText" class="text-xs text-slate-200 leading-tight">تأكيد حجز سيارة مرسيدس فئة S لعميل من <span class="text-gold font-bold">إسطنبول</span> الآن.</p>
-                <span class="text-[10px] font-mono text-slate-500 block mt-1">منذ دقيقة واحدة · نظام ميقات الآلي</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- 8. LUXURIOUS FOOTER -->
-    <footer class="border-t border-white/5 bg-slate-950/80 py-8 text-center text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
-            <p class="font-mono tracking-widest text-gold text-[10px]">MEEQAT DIGITAL LOGISTICS PLATFORM © 2026</p>
-            <p>جميع الحقوق محفوظة لشركة ميقات اللوجستية الرقمية - نظام تشغيل لوجستي مرخص ومحمي بالكامل.</p>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT FOR HUD ANIMATIONS & CONVERSION SYSTEM -->
-    <script>
-        // Fake Interactive Counters (إحصائيات ذكية حية تتحرك)
-        function animateCounter(id, start, end, duration, decimals = 0) {
-            let obj = document.getElementById(id);
-            let current = start;
-            let range = end - start;
-            let increment = end > start ? 1 : -1;
-            let step = Math.abs(Math.floor(duration / range));
-            if(decimals > 0) step = duration / (range * 10);
-            
-            let timer = setInterval(() => {
-                current += (range / (duration / 20));
-                if ((range > 0 && current >= end) || (range < 0 && current <= end)) {
-                    clearInterval(timer);
-                    obj.textContent = end.toFixed(decimals);
-                } else {
-                    obj.textContent = current.toFixed(decimals);
-                }
-            }, 20);
-        }
-
-        // Trigger counters animation on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            animateCounter("count1", 1350, 1452, 3000, 0);
-            animateCounter("count2", 95.2, 98.7, 3000, 1);
-            animateCounter("count3", 1.8, 0.4, 2500, 2);
-            
-            // Start Social Proof Loop
-            setTimeout(showSocialProof, 4000);
-        });
-
-        // Psychological Weapons: Social Proof Notifications Loop
-        const locations = ['إسطنبول', 'جاكرتا', 'الكويت', 'لندن', 'دبي', 'الرياض', 'كوالالمبور'];
-        const cars = ['مرسيدس S-Class', 'جيمس صالون يوكون', 'ستاريا الملكية'];
+    <!-- الواجهة السينمائية ومحرك الحجز -->
+    <section class="hero">
+        <h2 class="hero-title">ميقات اللوجستية.. <span>دقة الموعد وفخامة المسار</span></h2>
+        <p class="hero-subtitle">المنصة الذكية المستقلة لنقل زوار الحرمين وكبار الشخصيات VIP</p>
         
-        function showSocialProof() {
-            const randomLoc = locations[Math.floor(Math.random() * locations.length)];
-            const randomCar = cars[Math.floor(Math.random() * cars.length)];
-            const widget = document.getElementById('socialProof');
-            const textElement = document.getElementById('socialProofText');
+        <div class="booking-widget">
+            <div class="widget-grid">
+                <div class="input-group">
+                    <label><i class="fa-solid fa-plane-arrival"></i> موقع الاستقبال</label>
+                    <select id="pickup">
+                        <option>مطار الملك عبدالعزيز بجدة (JED)</option>
+                        <option>محطة قطار الحرمين بمكة</option>
+                        <option>مطار الملك خالد بالرياض (RUH)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label><i class="fa-solid fa-hotel"></i> وجهة التوصيل</label>
+                    <select id="dropoff">
+                        <option>الفندق / الحرم المكي الشريف</option>
+                        <option>المنطقة المركزية بالمدينة المنورة</option>
+                        <option>وسط مدينة جدة</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label><i class="fa-solid fa-car-side"></i> نوع المركبة الفاخرة</label>
+                    <select id="carType">
+                        <option value="هيونداي ستاريا VIP">هيونداي ستاريا VIP (عائلي فاخر)</option>
+                        <option value="مرسيدس S-Class">مرسيدس S-Class (VIP ملكي)</option>
+                        <option value="جي إم سي يوكن XL">جي إم سي يوكن XL (فخامة مطلقة)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label><i class="fa-solid fa-calendar-days"></i> التاريخ والوقت</label>
+                    <input type="datetime-local" id="dateTime" required>
+                </div>
+            </div>
+            <button class="btn-main" onclick="openPaymentModal()">احجز رحلتك الفاخرة الآن</button>
+        </div>
+    </section>
+
+    <!-- صفحة الدفع الآلي والتحقق من كشف الركاب -->
+    <div class="modal-section" id="paymentModal">
+        <div class="modal-content">
+            <h2 style="color: var(--gold-color); margin-bottom: 20px; text-align: center;">إصدار كشف الركاب القانوني والدفع</h2>
+            <div class="input-group" style="margin-bottom: 15px;">
+                <label>اسم الراكب الرئيسي (مطابق للجواز/الهوية)</label>
+                <input type="text" id="passengerName" placeholder="الاسم الكامل">
+            </div>
+            <div class="input-group" style="margin-bottom: 15px;">
+                <label>رقم الهوية / الجواز / تأشيرة العمرة</label>
+                <input type="text" id="passengerId" placeholder="رقم الوثيقة الرسمية">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <label>عدد المرافقين</label>
+                <input type="number" id="companions" value="0" min="0">
+            </div>
+
+            <h3 style="text-align: center; color: var(--text-white);">بوابة الدفع الآمنة الفورية</h3>
+            <div class="payment-gateways">
+                <i class="fa-brands fa-apple-pay" title="Apple Pay"></i>
+                <i class="fa-solid fa-credit-card" title="Mada / Visa"></i>
+            </div>
             
-            textElement.innerHTML = `تم تأكيد رحلة لعميل من <span class="text-gold font-bold">${randomLoc}</span> على متن <span class="text-slate-300 font-semibold">${randomCar}</span> بنجاح.`;
-            
-            // Pop up appearance
-            widget.classList.remove('translate-y-20', 'opacity-0');
-            
-            // Hide after 5 seconds
-            setTimeout(() => {
-                widget.classList.add('translate-y-20', 'opacity-0');
-                // Loop again in 12 seconds
-                setTimeout(showSocialProof, 12000);
-            }, 5000);
+            <button class="btn-main" onclick="processPayment()">تأكيد الدفع الآلي (350 ريال)</button>
+        </div>
+    </div>
+
+    <!-- مستند قسيمة الحجز الفاخرة المخصصة للطباعة (Voucher) -->
+    <div class="voucher-container" id="voucher">
+        <div class="voucher-header">
+            <div>
+                <h2 style="color: #0A192F; font-size: 28px;">قسيمة حجز سياحية رسمية</h2>
+                <p style="color: #666;">ميقات اللوجستية لتنظيم الرحلات | رخصة رقم: 791201</p>
+            </div>
+            <div style="text-align: left;">
+                <h3 style="color: #D4AF37;">MIQAT LOGISTICS</h3>
+                <p id="v-ticket" style="font-weight: bold;"></p>
+            </div>
+        </div>
+
+        <table class="voucher-table">
+            <tr>
+                <th>موقع الاستقبال</th>
+                <td id="v-pickup"></td>
+                <th>وجهة التوصيل</th>
+                <td id="v-dropoff"></td>
+            </tr>
+            <tr>
+                <th>التاريخ والوقت</th>
+                <td id="v-date"></td>
+                <th>نوع المركبة</th>
+                <td id="v-car"></td>
+            </tr>
+            <tr>
+                <th>الراكب الرئيسي</th>
+                <td id="v-name"></td>
+                <th>رقم الوثيقة</th>
+                <td id="v-id"></td>
+            </tr>
+            <tr>
+                <th>حالة الدفع</th>
+                <td style="color: green; font-weight: bold;">مدفوع آلياً بالكامل</td>
+                <th>إجمالي السعر</th>
+                <td style="font-weight: bold; color: #0A192F;">350 ريال سعودي</td>
+            </tr>
+        </table>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px;">
+            <div>
+                <p style="font-weight: bold; color: #0A192F;">تعليمات أمن الطرق والمطارات:</p>
+                <p style="font-size: 13px; color: #555;">هذا الحجز نظامي ومجدول مسبقاً. على السائق إبراز هذا البيان عند نقاط التفتيش الأمني ومنافذ التفويج.</p>
+            </div>
+            <div id="qrcode"></div>
+        </div>
+    </div>
+
+    <!-- أيقونة الواتساب العائمة للدعم بذكاء اصطناعي لغات متعددة -->
+    <a href="wa.meً%20ميقات%20أود%20الاستفسار%20عن%20الخدمات" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // دالة فتح بوابة الدفع وكشف الركاب
+        function openPaymentModal() {
+            const dateInput = document.getElementById('dateTime').value;
+            if(!dateInput) {
+                alert('فضلاً اختر تاريخ ووقت الرحلة أولاً');
+                return;
+            }
+            document.getElementById('paymentModal').style.display = 'flex';
         }
 
-        // BUBBLE THE RESERVATION: The Ultimate AI Booking Illusion
-        function handleBooking(event) {
-            event.preventDefault();
-            
-            const loadingScreen = document.getElementById('loadingScreen');
-            const loadingText = document.getElementById('loadingText');
-            const progressBar = document.getElementById('progressBar');
-            
-            // Show NASA-style loading screen
-            loadingScreen.classList.remove('hidden');
-            
-            const statusSteps = [
-                { text: "ACCESSING MEEQAT SATELLITE TELEMETRY...", progress: "20%" },
-                { text: "GEOLOCATING NEAREST AVAILABLE VIP DRIVERS IN MAKKAH ZONE...", progress: "50%" },
-                { text: "COMPUTING OPTIMAL SMART-ROUTE VIA TRAFFIC DENSITY ENGINE...", progress: "80%" },
-                { text: "FOUND 3 CONTRACTED CHAUFFEURS. SECURING EXCLUSIVE SELECTION...", progress: "100%" }
-            ];
+        // دالة أتمتة الدفع، توليد القسيمة، والإرسال الفوري للواتساب
+        function processPayment() {
+            const name = document.getElementById('passengerName').value;
+            const id = document.getElementById('passengerId').value;
 
-            let stepIdx = 0;
-            const stepInterval = setInterval(() => {
-                if (stepIdx < statusSteps.length) {
-                    loadingText.innerText = statusSteps[stepIdx].text;
-                    progressBar.style.width = statusSteps[stepIdx].progress;
-                    stepIdx++;
-                } else {
-                    clearInterval(stepInterval);
-                    // Redirect to WhatsApp with professional template to finalize closing manually
-                    const whatsappNumber = "966500000000"; // ضع رقم الواتساب الخاص بك هنا بالصيغة الدولية دون أصفار
-                    const text = encodeURIComponent("مرحباً شركة ميقات الرقمية، لقد قمت بفحص توافر سيارات الـ VIP عبر المنصة اللوجستية الذكية وأرغب في تأكيد الحجز فوراً مع المنسق التقني للرحلة.");
-                    window.location.href = `https://wa.me{whatsappNumber}?text=${text}`;
-                }
-            }, 1200);
+            if(!name || !id) {
+                alert('بيانات الركاب إلزامية لإصدار كشف الركاب القانوني');
+                return;
+            }
+
+            // إخفاء صفحة الدفع وإظهار القسيمة
+            document.getElementById('paymentModal').style.display = 'none';
+            document.getElementById('voucher').style.display = 'block';
+
+            // تعبئة بيانات الكشف الفوري
+            const ticketNum = "MQT-" + Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('v-ticket').innerText = "رقم الحجز: " + ticketNum;
+            document.getElementById('v-pickup').innerText = document.getElementById('pickup').value;
+            document.getElementById('v-dropoff').innerText = document.getElementById('dropoff').value;
+            document.getElementById('v-date').innerText = document.getElementById('dateTime').value.replace('T', ' ');
+            document.getElementById('v-car').innerText = document.getElementById('carType').value;
+            document.getElementById('v-name').innerText = name;
+            document.getElementById('v-id').innerText = id;
+
+            // إنشاء الـ QR Code التوثيقي داخل القسيمة آلياً
+            document.getElementById('qrcode').innerHTML = "";
+            new QRCode(document.getElementById("qrcode"), {
+                text: Miqat Ticket: ${ticketNum} | Passenger: ${name},
+                width: 100,
+                height: 100
+            });
+
+            // تحويل القسيمة إلى ملف PDF عالمي وحفظه على جهاز العميل فوراً
+            const element = document.getElementById('voucher');
+            const opt = {
+                margin:       1,
+                filename:     Miqat_Voucher_${ticketNum}.pdf,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(element).set(opt).save();
+
+            // المحرك اللوجستي: إرسال تفاصيل الحجز الفورية آلياً لواتساب المؤسسة للتنسيق الفوري مع الـ 50 سائق
+            setTimeout(() => {
+                const message = 🚨 *إشعار حجز آلي جديد - ميقات اللوجستية* 🚨%0A%0A +
+                                *رقم الحجز:* ${ticketNum}%0A +
+                                *العميل:* ${name}%0A +
+                                *المركبة:* ${document.getElementById('carType').value}%0A +
+                                *المسار:* من ${document.getElementById('pickup').value} إلى ${document.getElementById('dropoff').value}%0A +
+                                *التوقيت:* ${document.getElementById('dateTime').value.replace('T', ' ')}%0A%0A +
+                                💡 _النظام أصدر قسيمة الـ PDF والـ QR للعميل بنجاح. يرجى توجيه الرحلة لأقرب سائق متوفر._;
+                
+                window.open(wa.me{message}, '_blank');
+            }, 2000);
         }
     </script>
 </body>
